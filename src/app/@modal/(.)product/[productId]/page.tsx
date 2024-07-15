@@ -1,5 +1,4 @@
-import ProductDisplay from "@/components/experiments/product-details/product-display";
-import { Modal } from "@/components/Modal";
+import { ProductModal } from "@/components/experiments/product-details/product-modal";
 import { products } from "@/lib/data";
 
 type Props = {
@@ -15,9 +14,5 @@ export default async function Photo({ params: { productId } }: Props) {
     return <div>Product not found</div>;
   }
 
-  return (
-    <Modal>
-      <ProductDisplay product={product} />
-    </Modal>
-  );
+  return <ProductModal product={product} />;
 }
