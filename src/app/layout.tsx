@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <main className="flex w-full max-w-2xl mx-auto flex-col px-4 md:px-0">
-            <div className="flex flex-col gap-16 sm:gap-16 w-full mb-20">
+            <div className="flex flex-col gap-16 sm:gap-20 w-full mb-20">
               <Header />
 
               {children}
