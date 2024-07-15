@@ -1,25 +1,30 @@
 import { HeaderSection } from "@/components/header-section";
 import { products } from "@/lib/data";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export function ProductDetails() {
   return (
-    <>
+    <div className="flex flex-col gap-y-7">
       <HeaderSection
         title="Carousel & Modal - Drawer"
         text="Resize your screen for this the drawer on mobile."
       />
       <CardList />
-    </>
+    </div>
   );
 }
 
 function CardList() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
       {products.map((product) => (
-        <div key={product.id} className="flex flex-col w-full">
+        <Link
+          href={`/product/${product.id}`}
+          key={product.id}
+          className="flex flex-col w-full"
+        >
           <div className="w-full h-[300px] rounded-xl overflow-hidden bg-muted-foreground/15">
             <Image
               width="260"
@@ -30,11 +35,11 @@ function CardList() {
               alt={product.title}
             />
           </div>
-          <div className="flex w-full items-center justify-between gap-4 text-[15px] font-medium mt-1 px-0.5    ">
+          <div className="flex w-full items-center justify-between gap-4 text-[15px] font-medium mt-1.5 px-0.5    ">
             <p className="text-balance truncate">{product.title}</p>
             <p className="text-muted-foreground">${product.price}</p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
