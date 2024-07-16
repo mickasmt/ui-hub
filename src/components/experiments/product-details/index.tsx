@@ -27,12 +27,12 @@ function CardList() {
         >
           <div className="w-full h-[300px] rounded-xl overflow-hidden bg-muted-foreground/15">
             <Image
-              width="260"
-              height="300"
-              loading="eager"
+              width={300}
+              height={500}
               className="w-full h-full object-cover object-center"
               src={product.thumbnail}
               alt={product.title}
+              // style={{ width: "auto", height: "auto" }}
             />
           </div>
           <div className="flex w-full items-center justify-between gap-4 text-[15px] font-medium mt-1.5 px-0.5    ">

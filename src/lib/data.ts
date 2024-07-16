@@ -24,11 +24,11 @@ export const products = [
     description:
       "Stylish grey dress suitable for casual and semi-formal events. Crafted with care to ensure durability.",
     category: "women's clothing",
-    thumbnail: "/_static/images/products/dress-grey.jpg",
+    thumbnail: "/_static/images/products/dress-grey-1.jpg",
     images: [
-      "/_static/images/products/dress-grey.jpg",
-      "/_static/images/products/dress-grey.jpg",
-      "/_static/images/products/dress-grey.jpg",
+      "/_static/images/products/dress-grey-1.jpg",
+      "/_static/images/products/dress-grey-2.jpg",
+      "/_static/images/products/dress-grey-3.jpg",
     ],
     rating: {
       rate: 4.3,
@@ -42,11 +42,11 @@ export const products = [
     description:
       "Chic white-colored dress for a sophisticated look. Perfect for any occasion requiring elegance.",
     category: "women's clothing",
-    thumbnail: "/_static/images/products/dress-white.jpg",
+    thumbnail: "/_static/images/products/dress-white-1.jpg",
     images: [
-      "/_static/images/products/dress-white.jpg",
-      "/_static/images/products/dress-white.jpg",
-      "/_static/images/products/dress-white.jpg",
+      "/_static/images/products/dress-white-1.jpg",
+      "/_static/images/products/dress-white-2.jpg",
+      "/_static/images/products/dress-white-3.jpg",
     ],
     rating: {
       rate: 4.7,

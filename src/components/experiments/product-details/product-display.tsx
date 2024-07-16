@@ -9,7 +9,7 @@ type Props = {
 export default function ProductDisplay({ product }: Props) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-8 sm:gap-6">
-      <div className="w-full sm:col-span-4">
+      <div className="w-full sm:col-span-4 rounded-xl overflow-hidden">
         <ProductCarousel images={product.images} />
       </div>
 
