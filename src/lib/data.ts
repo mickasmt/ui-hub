@@ -1,8 +1,8 @@
 export const products = [
   {
     id: 1,
-    title: "Black Dress",
-    price: 49.99,
+    title: "Black Ruffle Outfit",
+    price: 599.99,
     description:
       "Elegant black dress perfect for evening occasions. Made from high-quality fabric for a comfortable fit.",
     category: "women's clothing",
