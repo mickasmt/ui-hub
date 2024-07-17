@@ -15,9 +15,29 @@ export default function ProductDisplay({ product }: Props) {
       </div>
 
       <div className="flex flex-col sm:col-span-4 w-full items-start gap-4 font-medium text-pretty ">
-        <div className="flex flex-col w-full gap-1 text-balance">
+        <div className="flex flex-col w-full gap-1.5 text-balance">
           <h1 className="text-2xl">{product.title}</h1>
-          <p className="mt-1 text-xl text-muted-foreground">${product.price}</p>
+          <p className=" text-xl text-muted-foreground">${product.price}</p>
+          <div className=" flex items-center">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <svg
+                key={`star-${index}`}
+                className="text-yellow-400 h-5 w-5 shrink-0"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            ))}
+            <span className="text-[15px] leading-none text-muted-foreground/80 font-medium ml-2">
+              35 reviews
+            </span>
+          </div>
         </div>
         <p className="mt-1 text-[17px] text-muted-foreground">
           {product.description}
@@ -40,7 +60,7 @@ export function ProductInfos() {
       <div className="mt-4 sm:mt-0">
         <h2 className="text-lg font-medium">Colors</h2>
         <ToggleGroup
-          className="mt-2.5 flex justify-start flex-wrap"
+          className="mt-2 flex justify-start flex-wrap"
           type="single"
           defaultValue="black"
           variant="outline"
@@ -60,7 +80,7 @@ export function ProductInfos() {
       <div className="mt-4 sm:mt-0">
         <h2 className="text-lg font-medium">Size</h2>
         <ToggleGroup
-          className="mt-2.5 flex justify-start flex-wrap"
+          className="mt-2 flex justify-start flex-wrap"
           type="single"
           defaultValue="m"
           variant="outline"

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { TailwindIndicator } from "@/components/layout/tailwind-indicator";
 
 export const metadata: Metadata = {
   title: "Create Next App",

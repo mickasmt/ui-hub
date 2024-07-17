@@ -1,4 +1,4 @@
-import ThemeToggle from "@/components/theme-toggle";
+import ThemeToggle from "@/components/layout/theme-toggle";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 

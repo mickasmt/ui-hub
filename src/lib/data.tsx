@@ -19,8 +19,8 @@ export const products = [
   },
   {
     id: 2,
-    title: "Gray Double Breasted",
-    price: 45.99,
+    title: "Elegant Gray Dress",
+    price: 450.99,
     description:
       "Stylish gray dress suitable for casual and semi-formal events. Crafted with care to ensure durability.",
     category: "women's clothing",
@@ -37,8 +37,8 @@ export const products = [
   },
   {
     id: 3,
-    title: "White Dress",
-    price: 55.99,
+    title: "White Knit Dress",
+    price: 550.99,
     description:
       "Chic white-colored dress for a sophisticated look. Perfect for any occasion requiring elegance.",
     category: "women's clothing",

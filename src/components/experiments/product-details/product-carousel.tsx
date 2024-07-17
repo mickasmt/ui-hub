@@ -63,7 +63,11 @@ export function ProductCarousel({
           duration: 20,
         }}
       >
-        <CarouselContent className="m-0 size-full sm:max-h-[500px]">
+        <CarouselContent
+          className={cn("m-0 size-full sm:max-h-[500px]", {
+            "max-h-[600px]": !drawer,
+          })}
+        >
           {images.map((item, index) => (
             <CarouselItem
               key={index}

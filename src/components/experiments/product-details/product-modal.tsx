@@ -5,13 +5,12 @@ import { Drawer } from "vaul";
 
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils";
 import { products } from "@/lib/data";
-import ProductDisplay, { ProductInfos } from "./product-display";
+import { cn } from "@/lib/utils";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { ProductCarousel } from "./product-carousel";
-import { Button } from "@/components/ui/button";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import ProductDisplay, { ProductInfos } from "./product-display";
 import { SmoothButtonCart } from "./smooth-button-cart";
 interface ProductModalProps {
   product: (typeof products)[0];
@@ -32,8 +31,6 @@ export function ProductModal({ product }: ProductModalProps) {
         ? height - (parseInt(snapPoints[0].replace("px", "")) - 35)
         : 0;
   }
-
-  console.log(drawerHeightStart);
 
   const handleOpenChange = () => {
     router.back();
@@ -95,11 +92,6 @@ export function ProductModal({ product }: ProductModalProps) {
                 }
               )}
             >
-              {/* Like Button */}
-              <div className="absolute -top-14 right-3 z-60 size-12 flex justify-center items-center rounded-full bg-red-500 text-white">
-                aas
-              </div>
-
               {/* Header Drawer */}
               <div
                 className="w-full shrink-0"
@@ -118,15 +110,16 @@ export function ProductModal({ product }: ProductModalProps) {
                 <div className="mt-3 flex items-center">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <svg
+                      key={`star-${index}`}
                       className="text-yellow-400 h-5 w-5 shrink-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                   ))}
