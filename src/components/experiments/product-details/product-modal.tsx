@@ -22,7 +22,7 @@ export function ProductModal({ product }: ProductModalProps) {
   const { isMobile, height } = useMediaQuery();
   const [snap, setSnap] = useState<number | string | null>(0.3);
 
-  const snapPoints = ["250px", 0.8];
+  const snapPoints = ["250px", 0.85];
   const lastSnapPoint = snapPoints[snapPoints.length - 1];
 
   let drawerHeightStart;
@@ -51,7 +51,7 @@ export function ProductModal({ product }: ProductModalProps) {
       >
         <Drawer.Portal>
           <Drawer.Overlay
-            onClick={handleOpenChange}
+            // onClick={() => setSnap(snapPoints[0])}
             className="fixed inset-0 bg-background/30 backdrop-blur-sm"
             style={{
               zIndex: snap === lastSnapPoint ? 45 : 30,
@@ -71,7 +71,7 @@ export function ProductModal({ product }: ProductModalProps) {
           </div>
 
           {/* Cart button  */}
-          <div className="fixed inset-x-0 bottom-0 z-[999] h-16 shrink-0 bg-background border-t">
+          <div className="fixed inset-x-0 bottom-0 z-[80] h-16 shrink-0 bg-background border-t  pointer-events-auto">
             <div className="flex items-center h-full max-w-md mx-auto px-4">
               <SmoothButtonCart />
             </div>
@@ -82,7 +82,7 @@ export function ProductModal({ product }: ProductModalProps) {
             vaul-drawer-carousel=""
             className="fixed flex flex-col bg-background border border-b-none rounded-t-2xl overflow-hidden bottom-0 inset-x-0 h-full max-h-[97%] mx-[-1px] z-50 outline-none"
           >
-            <div className="sticky top-0 z-20 flex w-full items-center justify-center bg-background">
+            <div className="sticky top-0 flex w-full items-center justify-center bg-background">
               <div className="my-3 h-1.5 w-16 rounded-full bg-muted-foreground/20" />
             </div>
 

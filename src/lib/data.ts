@@ -19,10 +19,10 @@ export const products = [
   },
   {
     id: 2,
-    title: "Grey Dress",
+    title: "Gray Double Breasted",
     price: 45.99,
     description:
-      "Stylish grey dress suitable for casual and semi-formal events. Crafted with care to ensure durability.",
+      "Stylish gray dress suitable for casual and semi-formal events. Crafted with care to ensure durability.",
     category: "women's clothing",
     thumbnail: "/_static/images/products/dress-grey-1.jpg",
     images: [

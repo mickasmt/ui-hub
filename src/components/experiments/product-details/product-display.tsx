@@ -14,12 +14,12 @@ export default function ProductDisplay({ product }: Props) {
         <ProductCarousel images={product.images} />
       </div>
 
-      <div className="flex flex-col sm:col-span-4 w-full items-start gap-5 font-medium text-pretty ">
+      <div className="flex flex-col sm:col-span-4 w-full items-start gap-4 font-medium text-pretty ">
         <div className="flex flex-col w-full gap-1 text-balance">
           <h1 className="text-2xl">{product.title}</h1>
           <p className="mt-1 text-xl text-muted-foreground">${product.price}</p>
         </div>
-        <p className="text-[17px] text-muted-foreground">
+        <p className="mt-1 text-[17px] text-muted-foreground">
           {product.description}
         </p>
         <ProductInfos />
@@ -38,7 +38,7 @@ export function ProductInfos() {
   return (
     <>
       <div className="mt-4 sm:mt-0">
-        <h2 className="text-xl font-medium">Colors</h2>
+        <h2 className="text-lg font-medium">Colors</h2>
         <ToggleGroup
           className="mt-2.5 flex justify-start flex-wrap"
           type="single"
@@ -48,17 +48,17 @@ export function ProductInfos() {
           {colors.map((color) => (
             <ToggleGroupItem
               key={color}
-              className="rounded-xl px-5"
+              className="rounded-xl capitalize px-5"
               value={color}
             >
-              {color.charAt(0).toUpperCase() + color.slice(1)}
+              {color}
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
       </div>
 
       <div className="mt-4 sm:mt-0">
-        <h2 className="text-xl font-medium">Size</h2>
+        <h2 className="text-lg font-medium">Size</h2>
         <ToggleGroup
           className="mt-2.5 flex justify-start flex-wrap"
           type="single"
@@ -68,10 +68,10 @@ export function ProductInfos() {
           {sizes.map((size) => (
             <ToggleGroupItem
               key={size}
-              className="rounded-xl px-5"
+              className="rounded-xl uppercase px-5"
               value={size}
             >
-              {size.toUpperCase()}
+              {size}
             </ToggleGroupItem>
           ))}
         </ToggleGroup>

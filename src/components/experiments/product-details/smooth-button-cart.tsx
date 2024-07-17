@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 const buttonCopy = {
   idle: "Add to cart",
-  loading: <Icons.spinner className="animate-spin text-foreground size-6" />,
-  success: "Product added!",
+  loading: <Loader2 className="animate-spin size-5" />,
+  success: "Product added !",
 };
 
 export const SmoothButtonCart = () => {
@@ -17,7 +17,7 @@ export const SmoothButtonCart = () => {
 
   return (
     <Button
-      className="h-12 rounded-xl w-full text-base font-medium disabled:opacity-85"
+      className="h-12 rounded-xl w-full text-base font-semibold disabled:opacity-85"
       disabled={buttonState !== "idle"}
       onClick={() => {
         // This code is just a placeholder
@@ -25,11 +25,11 @@ export const SmoothButtonCart = () => {
 
         setTimeout(() => {
           setButtonState("success");
-        }, 1750);
+        }, 1500);
 
         setTimeout(() => {
           setButtonState("idle");
-        }, 3500);
+        }, 3300);
       }}
     >
       <AnimatePresence mode="popLayout" initial={false}>

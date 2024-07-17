@@ -109,10 +109,10 @@ export function ProductCarousel({
               onClick={() => goToIndex(index)}
               className="relative size-1.5 overflow-hidden rounded-full"
             >
-              <div className="w-full h-full bg-muted/30 absolute"></div>
+              <div className="w-full h-full bg-muted/30 dark:bg-muted-foreground/80 absolute"></div>
               <div
                 className={cn(
-                  "h-full bg-background relative w-0 z-10",
+                  "h-full bg-background dark:bg-foreground relative w-0 z-10",
                   current === index + 1 ? "w-full" : ""
                 )}
               />
