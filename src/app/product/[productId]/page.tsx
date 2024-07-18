@@ -1,5 +1,5 @@
 import ProductDisplay from "@/components/experiments/product-details/product-display";
-import { products } from "@/lib/data";
+import { getProduct } from "@/lib/data";
 
 type Props = {
   params: {
@@ -7,8 +7,8 @@ type Props = {
   };
 };
 
-export default function Photo({ params: { productId } }: Props) {
-  const product = products.find((product) => product.id === Number(productId));
+export default async function ProductDetailsPage({ params: { productId } }: Props) {
+  const product = await getProduct(Number(productId))
 
   if (!product) {
     return <div>Product not found</div>;

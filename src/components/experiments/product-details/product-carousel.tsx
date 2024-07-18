@@ -11,12 +11,12 @@ import {
 
 import React from "react";
 
-import Image from "next/image";
-
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { ImageData } from "@/types";
 
 interface ProductCarouselProps {
-  images: string[];
+  images: ImageData[];
   drawer?: boolean;
 }
 
@@ -68,18 +68,18 @@ export function ProductCarousel({
             "max-h-[600px]": !drawer,
           })}
         >
-          {images.map((item, index) => (
+          {images.map((image, idx) => (
             <CarouselItem
-              key={index}
+              key={image.img.src}
               className="p-0 sm:first:rounded-l-xl sm:last:rounded-r-xl overflow-hidden size-full"
             >
               <Image
-                src={item}
-                alt="phone screen"
-                width={300}
-                height={500}
-                className="size-full object-center object-cover"
-                priority={index === 0 ? true : false}
+                {...image.img}
+                alt={image.img.src}
+                key={idx}
+                priority={idx === 0 ? true : false}
+                className="size-full object-center object-cover sm:max-h-[500px]"
+                sizes="(max-width: 640px) 500px, 350px"
               />
             </CarouselItem>
           ))}
@@ -100,6 +100,7 @@ export function ProductCarousel({
         />
       </Carousel>
 
+      {/* Dots */}
       <div
         className={cn(
           "absolute z-40 left-1/2 transform -translate-x-1/2",
@@ -108,9 +109,11 @@ export function ProductCarousel({
       >
         <div className="flex gap-3">
           {images.map((_, index) => (
-            <button
+            <div
               key={index}
-              onClick={() => goToIndex(index)}
+              // use <Button></Button> instead div if you want click to go next image
+              // aria-label={`carousel-img-${index}`}
+              // onClick={() => goToIndex(index)}
               className="relative size-1.5 overflow-hidden rounded-full"
             >
               <div className="w-full h-full bg-muted/30 dark:bg-muted-foreground/80 absolute"></div>
@@ -120,7 +123,7 @@ export function ProductCarousel({
                   current === index + 1 ? "w-full" : ""
                 )}
               />
-            </button>
+            </div>
           ))}
         </div>
       </div>

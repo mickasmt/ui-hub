@@ -40,9 +40,9 @@ function FooterLink({ href, label }: FooterLinkProps) {
 
 export function Footer() {
   return (
-    <footer className="mb-4 container w-full max-w-screen-sm px-4 text-base md:mb-6 md:px-0">
+    <footer className="mb-6 container w-full max-w-screen-sm px-4 text-base md:px-0">
       <div className="flex gap-2 sm:gap-4 items-center justify-between md:gap-6">
-        <div className="flex items-center gap-6 md:py-1.5">
+        <div className="flex items-center gap-5 md:py-1.5">
           {links.map((props, i) => (
             <FooterLink key={i} {...props} />
           ))}

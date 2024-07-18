@@ -1,4 +1,7 @@
-export const products = [
+import { Product, ProductImagesData } from "@/types";
+import { getImage } from "./get-image";
+
+export const products: (Product & { thumbnail: string; images: string[] })[] = [
   {
     id: 1,
     title: "Black Ruffle Outfit",
@@ -54,3 +57,43 @@ export const products = [
     },
   },
 ];
+
+export async function getProducts() {
+  // Map over products and get image data for each product
+  const productImages = await Promise.all(
+    products.map(async (product) => {
+      const { base64, img } = await getImage(product.thumbnail, "local");
+      return {
+        ...product,
+        thumbnail: {
+          base64,
+          img,
+        },
+      };
+    })
+  );
+
+  return productImages;
+}
+
+export async function getProduct(
+  id: number
+): Promise<ProductImagesData | undefined> {
+  const product = products.find((product) => product.id === Number(id));
+
+  if (!product) return;
+
+  const carouselImages = await Promise.all(
+    product.images.map(async (image) => {
+      const { base64, img } = await getImage(image, "local");
+      return { base64, img };
+    })
+  );
+
+  const productData = {
+    ...product,
+    images: carouselImages,
+  };
+
+  return productData;
+}

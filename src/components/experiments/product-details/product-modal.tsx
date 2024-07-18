@@ -5,23 +5,24 @@ import { Drawer } from "vaul";
 
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { products } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ProductCarousel } from "./product-carousel";
 import ProductDisplay, { ProductInfos } from "./product-display";
 import { SmoothButtonCart } from "./smooth-button-cart";
+import { ProductImagesData } from "@/types";
 interface ProductModalProps {
-  product: (typeof products)[0];
+  product: ProductImagesData;
 }
 
 export function ProductModal({ product }: ProductModalProps) {
   const router = useRouter();
   const { isMobile, height } = useMediaQuery();
   const [snap, setSnap] = useState<number | string | null>(0.3);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  const snapPoints = ["250px", 0.85];
+  const snapPoints = ["250px", 0.9];
   const lastSnapPoint = snapPoints[snapPoints.length - 1];
 
   let drawerHeightStart;
@@ -36,19 +37,26 @@ export function ProductModal({ product }: ProductModalProps) {
     router.back();
   };
 
+  const handleSnapChange = (newSnap: any) => {
+    if (newSnap !== lastSnapPoint && contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+    setSnap(newSnap);
+  };
+
   if (isMobile) {
     return (
       <Drawer.Root
         open={true}
         snapPoints={snapPoints}
         activeSnapPoint={snap}
-        setActiveSnapPoint={setSnap}
+        setActiveSnapPoint={handleSnapChange}
         dismissible={false}
         onClose={handleOpenChange}
       >
         <Drawer.Portal>
           <Drawer.Overlay
-            // onClick={() => setSnap(snapPoints[0])}
+            onClick={() => handleSnapChange(snapPoints[0])}
             className="fixed inset-0 bg-background/30 backdrop-blur-sm"
             style={{
               zIndex: snap === lastSnapPoint ? 45 : 30,
@@ -68,7 +76,7 @@ export function ProductModal({ product }: ProductModalProps) {
           </div>
 
           {/* Cart button  */}
-          <div className="fixed inset-x-0 bottom-0 z-[80] h-16 shrink-0 bg-background border-t  pointer-events-auto">
+          <div className="fixed inset-x-0 bottom-0 z-[80] h-16 shrink-0 bg-background border-t pointer-events-auto">
             <div className="flex items-center h-full max-w-md mx-auto px-4">
               <SmoothButtonCart />
             </div>
@@ -84,10 +92,11 @@ export function ProductModal({ product }: ProductModalProps) {
             </div>
 
             <div
+              ref={contentRef}
               className={cn(
-                "relative flex flex-col max-w-md mx-auto w-full px-4 pt-2 pb-52",
+                "relative flex flex-col max-w-md mx-auto w-full px-4 py-2 overscroll-none",
                 {
-                  "overflow-y-auto": snap === lastSnapPoint,
+                  "overflow-y-auto pb-20": snap === lastSnapPoint,
                   "overflow-hidden": snap !== lastSnapPoint,
                 }
               )}
@@ -95,6 +104,7 @@ export function ProductModal({ product }: ProductModalProps) {
               {/* Header Drawer */}
               <div
                 className="w-full shrink-0"
+                onClick={() => handleSnapChange(lastSnapPoint)}
                 // style={{
                 //   height: drawerHeightStart
                 //     ? `calc(${snapPoints[0]} - 50px)`
@@ -129,7 +139,7 @@ export function ProductModal({ product }: ProductModalProps) {
                 </div>
               </div>
 
-              <div className="mt-3 mb-14 w-full text-pretty">
+              <div className="mt-3 mb-16 w-full text-pretty">
                 <Drawer.Description className="mt-6 mb-4 text-[17px] text-muted-foreground font-medium">
                   {product.description}
                 </Drawer.Description>

@@ -1,13 +1,13 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { products } from "@/lib/data";
 import { ProductCarousel } from "./product-carousel";
 import { SmoothButtonCart } from "./smooth-button-cart";
+import { ProductImagesData } from "@/types";
 
-type Props = {
-  product: (typeof products)[0];
-};
+interface ProductDisplayProps {
+  product: ProductImagesData;
+}
 
-export default function ProductDisplay({ product }: Props) {
+export default function ProductDisplay({ product }: ProductDisplayProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-8 sm:gap-6">
       <div className="w-full sm:col-span-4 rounded-xl overflow-hidden">
@@ -34,7 +34,7 @@ export default function ProductDisplay({ product }: Props) {
                 ></path>
               </svg>
             ))}
-            <span className="text-[15px] leading-none text-muted-foreground/80 font-medium ml-2">
+            <span className="text-[15px] leading-none text-muted-foreground font-medium ml-2">
               35 reviews
             </span>
           </div>

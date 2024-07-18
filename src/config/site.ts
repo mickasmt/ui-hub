@@ -5,8 +5,8 @@ const site_url = process.env.NEXT_PUBLIC_APP_URL
   : "http://localhost:3000";
 
 export const siteConfig: SiteConfig = {
-  name: "mickasmt",
-  description: "mickasmt's portfolio",
+  name: "Ui Hub",
+  description: "A little space for mickasmt's ui experiments!",
   url: site_url,
   ogImage: `${site_url}/og.jpg`,
   links: {
