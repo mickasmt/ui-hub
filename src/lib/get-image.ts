@@ -1,6 +1,3 @@
-"use server";
-
-import path from "node:path";
 import fs from "node:fs/promises";
 import { getPlaiceholder } from "plaiceholder";
 
@@ -9,8 +6,10 @@ export const getImage = async (
   type: "local" | "remote" = "local"
 ) => {
   let buffer;
+  const filePath = `./public${src}`;
+
   if (type === "local") {
-    buffer = await fs.readFile(path.join("./public", src));
+    buffer = await fs.readFile(filePath);
   } else {
     buffer = await fetch(src).then(async (res) =>
       Buffer.from(await res.arrayBuffer())
