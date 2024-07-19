@@ -1,39 +1,32 @@
+"use server";
+
 import { siteConfig } from "@/config/site";
 import { getPlaiceholder } from "plaiceholder";
 
 export async function getImages(imagePaths: string[]) {
-  return await Promise.all(imagePaths.map((imagePath) => getBase64(imagePath)));
+  const base64Promises = imagePaths.map((imagePath) => getBase64(imagePath));
+  const imagesBase64 = await Promise.all(base64Promises);
+  return imagesBase64;
 }
 
 export async function getBase64(imageUrl: string) {
-  // try {
   let url = imageUrl;
 
   if (imageUrl.startsWith("/_static/")) {
     url = new URL(imageUrl, siteConfig.url).href;
   }
 
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch image: ${res.status} ${res.statusText}`);
-  }
-
-  const buffer = await res.arrayBuffer();
-  // const { base64 } = await getPlaiceholder(Buffer.from(buffer));
+  const buffer = await fetch(url).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
 
   const {
+    base64,
     metadata: { height, width },
-    ...plaiceholder
-  } = await getPlaiceholder(Buffer.from(buffer));
+  } = await getPlaiceholder(buffer, { size: 10 });
 
   return {
-    ...plaiceholder,
+    base64,
     img: { src: url, height, width },
   };
-
-  // return base64;
-  // } catch (e) {
-  //   if (e instanceof Error) console.log(e.stack);
-  // }
 }

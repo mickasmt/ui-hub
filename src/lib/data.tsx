@@ -59,7 +59,6 @@ export const products: (Product & { thumbnail: string; images: string[] })[] = [
 ];
 
 export async function getProducts() {
-  // Map over products and get image data for each product
   const productImages = await Promise.all(
     products.map(async (product) => {
       const data = await getBase64(product.thumbnail);
@@ -79,14 +78,18 @@ export async function getProducts() {
 export async function getProduct(
   id: number
 ): Promise<ProductImagesData | undefined> {
-  const product = products.find((product) => product.id === Number(id));
+  const product = products.find((product) => product.id === id);
 
   if (!product) return;
 
-  const productData = {
-    ...product,
-    images: await getImages(product.images),
-  };
-
-  return productData;
+  try {
+    const images = await getImages(product.images);
+    return {
+      ...product,
+      images: images,
+    };
+  } catch (error) {
+    console.error(`Failed to get images for product with id ${id}`, error);
+    throw error;
+  }
 }
