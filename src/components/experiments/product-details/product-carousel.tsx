@@ -68,15 +68,17 @@ export function ProductCarousel({
             "max-h-[600px]": !drawer,
           })}
         >
-          {images.map((image, idx) => (
+          {images.map((item, idx) => (
             <CarouselItem
-              key={image.img.src}
+              key={item.img.src}
               className="p-0 sm:first:rounded-l-xl sm:last:rounded-r-xl overflow-hidden size-full"
             >
               <Image
-                {...image.img}
-                alt={image.img.src}
-                key={idx}
+                {...item.img}
+                alt={item.img.src}
+                key={item.img.src}
+                placeholder="blur"
+                blurDataURL={item.base64}
                 priority={idx === 0 ? true : false}
                 className="size-full object-center object-cover sm:max-h-[500px]"
                 sizes="(max-width: 640px) 500px, 350px"

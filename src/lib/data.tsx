@@ -1,5 +1,5 @@
 import { Product, ProductImagesData } from "@/types";
-import { getImage } from "./get-image";
+import { getBase64, getImages } from "./get-image";
 
 export const products: (Product & { thumbnail: string; images: string[] })[] = [
   {
@@ -62,12 +62,12 @@ export async function getProducts() {
   // Map over products and get image data for each product
   const productImages = await Promise.all(
     products.map(async (product) => {
-      const { base64, img } = await getImage(product.thumbnail, "local");
+      const data = await getBase64(product.thumbnail);
       return {
         ...product,
         thumbnail: {
-          base64,
-          img,
+          base64: data?.base64,
+          img: data?.img,
         },
       };
     })
@@ -83,16 +83,9 @@ export async function getProduct(
 
   if (!product) return;
 
-  const carouselImages = await Promise.all(
-    product.images.map(async (image) => {
-      const { base64, img } = await getImage(image, "local");
-      return { base64, img };
-    })
-  );
-
   const productData = {
     ...product,
-    images: carouselImages,
+    images: await getImages(product.images),
   };
 
   return productData;

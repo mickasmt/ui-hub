@@ -7,8 +7,10 @@ type Props = {
   };
 };
 
-export default async function ProductDetailsPage({ params: { productId } }: Props) {
-  const product = await getProduct(Number(productId))
+export default async function ProductDetailsPage({
+  params: { productId },
+}: Props) {
+  const product = await getProduct(Number(productId));
 
   if (!product) {
     return <div>Product not found</div>;
