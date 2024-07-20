@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import logo from "../../../public/_static/images/flask.png"
 
 export function Header() {
   return (
@@ -9,8 +8,8 @@ export function Header() {
       <Link href="/">
         <Image
           className="size-[52px] shrink-0 overflow-hidden object-cover"
-          src={logo}
-          alt="logo"
+          src="/_static/images/flask.png"
+          alt="avatar"
           width={52}
           height={52}
           priority

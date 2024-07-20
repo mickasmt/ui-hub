@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 
 import { siteConfig } from "@/config/site";
 import { getPlaiceholder } from "plaiceholder";
