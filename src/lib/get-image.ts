@@ -1,9 +1,8 @@
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
 import { getPlaiceholder } from "plaiceholder";
 
 export const getImage = async (src: string) => {
-  const buffer = await fs.readFile(path.join("./public", src));
+  const buffer = await fs.readFile(`./public${src}`);
 
   const {
     base64,
