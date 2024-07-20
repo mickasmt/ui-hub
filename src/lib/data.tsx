@@ -1,5 +1,6 @@
 import { Product, ProductImagesData } from "@/types";
-import { getBase64, getImage, getImages } from "./get-image";
+
+import { getImage } from "./get-image";
 
 export const products: (Product & { thumbnail: string; images: string[] })[] = [
   {
@@ -66,24 +67,28 @@ export async function getProducts() {
         ...product,
         thumbnail: data,
       };
-    })
+    }),
   );
 
   return productImages;
 }
 
 export async function getProduct(
-  id: number
+  id: number,
 ): Promise<ProductImagesData | undefined> {
   const product = products.find((product) => product.id === id);
 
   if (!product) return;
 
   try {
-    const images = await getImages(product.images);
+    const base64Promises = product.images.map((imagePath) =>
+      getImage(imagePath),
+    );
+    const imagesBase64 = await Promise.all(base64Promises);
+
     return {
       ...product,
-      images: images,
+      images: imagesBase64,
     };
   } catch (error) {
     console.error(`Failed to get images for product with id ${id}`, error);
