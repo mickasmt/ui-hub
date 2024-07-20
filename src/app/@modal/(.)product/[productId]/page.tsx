@@ -10,7 +10,7 @@ type Props = {
 export default async function ProductDetailsModal({
   params: { productId },
 }: Props) {
-  const product = await getProduct(Number(productId));
+  const product = await getProduct(productId);
 
   if (!product) {
     return <div>Product not found</div>;

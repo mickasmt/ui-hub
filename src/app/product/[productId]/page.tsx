@@ -1,5 +1,11 @@
 import ProductDisplay from "@/components/experiments/product-details/product-display";
-import { getProduct } from "@/lib/data";
+import { getProduct, products } from "@/lib/data";
+
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    productId: product.id,
+  }));
+}
 
 type Props = {
   params: {
@@ -10,7 +16,7 @@ type Props = {
 export default async function ProductDetailsPage({
   params: { productId },
 }: Props) {
-  const product = await getProduct(Number(productId));
+  const product = await getProduct(productId);
 
   if (!product) {
     return <div>Product not found</div>;

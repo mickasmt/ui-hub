@@ -1,10 +1,11 @@
 import { Product, ProductImagesData } from "@/types";
 
 import { getImage } from "./get-image";
+import { getBlurDataURL } from "./utils";
 
 export const products: (Product & { thumbnail: string; images: string[] })[] = [
   {
-    id: 1,
+    id: "1",
     title: "Black Ruffle Outfit",
     price: 599.99,
     description:
@@ -22,7 +23,7 @@ export const products: (Product & { thumbnail: string; images: string[] })[] = [
     },
   },
   {
-    id: 2,
+    id: "2",
     title: "Elegant Gray Dress",
     price: 450.99,
     description:
@@ -40,7 +41,7 @@ export const products: (Product & { thumbnail: string; images: string[] })[] = [
     },
   },
   {
-    id: 3,
+    id: "3",
     title: "White Knit Dress",
     price: 550.99,
     description:
@@ -59,22 +60,10 @@ export const products: (Product & { thumbnail: string; images: string[] })[] = [
   },
 ];
 
-export async function getProducts() {
-  const productImages = await Promise.all(
-    products.map(async (product) => {
-      const data = await getImage(product.thumbnail);
-      return {
-        ...product,
-        thumbnail: data,
-      };
-    }),
-  );
 
-  return productImages;
-}
 
 export async function getProduct(
-  id: number,
+  id: string,
 ): Promise<ProductImagesData | undefined> {
   const product = products.find((product) => product.id === id);
 
