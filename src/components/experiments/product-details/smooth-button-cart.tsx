@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 const buttonCopy = {
   idle: "Add to cart",
-  loading: <Loader2 className="animate-spin size-5" />,
+  loading: <Loader2 className="size-5 animate-spin" />,
   success: "Product added !",
 };
 
@@ -17,7 +18,7 @@ export const SmoothButtonCart = () => {
 
   return (
     <Button
-      className="h-12 rounded-xl w-full text-base font-semibold disabled:opacity-85"
+      className="h-12 w-full rounded-xl text-base font-semibold disabled:opacity-85"
       disabled={buttonState !== "idle"}
       onClick={() => {
         // This code is just a placeholder

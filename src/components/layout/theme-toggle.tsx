@@ -1,10 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useMounted } from "@/hooks/use-mounted";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+
+import { useMounted } from "@/hooks/use-mounted";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ThemeToggle() {
   const mounted = useMounted();
@@ -13,9 +14,9 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <div className="flex space-x-1">
-        <Skeleton className="w-8 h-8 rounded-full" />
-        <Skeleton className="w-8 h-8 rounded-full" />
-        <Skeleton className="w-8 h-8 rounded-full" />
+        <Skeleton className="size-8 rounded-full" />
+        <Skeleton className="size-8 rounded-full" />
+        <Skeleton className="size-8 rounded-full" />
       </div>
     );
   }
@@ -29,7 +30,7 @@ export default function ThemeToggle() {
         className="rounded-full"
         onClick={() => setTheme("dark")}
       >
-        <Moon className="h-5 w-5" />
+        <Moon className="size-5" />
       </Button>
       <Button
         aria-label="light mode"
@@ -38,7 +39,7 @@ export default function ThemeToggle() {
         className="rounded-full"
         onClick={() => setTheme("light")}
       >
-        <Sun className="h-5 w-5" />
+        <Sun className="size-5" />
       </Button>
       <Button
         aria-label="system mode"
@@ -47,7 +48,7 @@ export default function ThemeToggle() {
         className="rounded-full"
         onClick={() => setTheme("system")}
       >
-        <Monitor className="h-5 w-5" />
+        <Monitor className="size-5" />
       </Button>
     </div>
   );

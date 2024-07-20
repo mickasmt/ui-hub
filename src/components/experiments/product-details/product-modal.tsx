@@ -1,17 +1,19 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ProductImagesData } from "@/types";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Drawer } from "vaul";
 
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import { useRef, useState } from "react";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+
 import { ProductCarousel } from "./product-carousel";
 import ProductDisplay, { ProductInfos } from "./product-display";
 import { SmoothButtonCart } from "./smooth-button-cart";
-import { ProductImagesData } from "@/types";
+
 interface ProductModalProps {
   product: ProductImagesData;
 }
@@ -64,7 +66,7 @@ export function ProductModal({ product }: ProductModalProps) {
           />
 
           {/* Carousel */}
-          <div className="fixed inset-0 bg-background z-40 pointer-events-auto">
+          <div className="pointer-events-auto fixed inset-0 z-40 bg-background">
             <div
               className="relative size-full"
               style={{
@@ -76,8 +78,8 @@ export function ProductModal({ product }: ProductModalProps) {
           </div>
 
           {/* Cart button  */}
-          <div className="fixed inset-x-0 bottom-0 z-[80] h-16 shrink-0 bg-background border-t pointer-events-auto">
-            <div className="flex items-center h-full max-w-md mx-auto px-4">
+          <div className="pointer-events-auto fixed inset-x-0 bottom-0 z-[80] h-16 shrink-0 border-t bg-background">
+            <div className="mx-auto flex h-full max-w-md items-center px-4">
               <SmoothButtonCart />
             </div>
           </div>
@@ -85,7 +87,7 @@ export function ProductModal({ product }: ProductModalProps) {
           {/* Drawer Content */}
           <Drawer.Content
             vaul-drawer-carousel=""
-            className="fixed flex flex-col bg-background border border-b-none rounded-t-2xl overflow-hidden bottom-0 inset-x-0 h-full max-h-[97%] mx-[-1px] z-50 outline-none"
+            className="border-b-none fixed inset-x-0 bottom-0 z-50 -mx-px flex h-full max-h-[97%] flex-col overflow-hidden rounded-t-2xl border bg-background outline-none"
           >
             <div className="sticky top-0 flex w-full items-center justify-center bg-background">
               <div className="my-3 h-1.5 w-16 rounded-full bg-muted-foreground/20" />
@@ -94,11 +96,11 @@ export function ProductModal({ product }: ProductModalProps) {
             <div
               ref={contentRef}
               className={cn(
-                "relative flex flex-col max-w-md mx-auto w-full px-4 py-2 overscroll-none",
+                "relative mx-auto flex w-full max-w-md flex-col overscroll-none px-4 py-2",
                 {
                   "overflow-y-auto pb-20": snap === lastSnapPoint,
                   "overflow-hidden": snap !== lastSnapPoint,
-                }
+                },
               )}
             >
               {/* Header Drawer */}
@@ -111,17 +113,17 @@ export function ProductModal({ product }: ProductModalProps) {
                 //     : "auto",
                 // }}
               >
-                <Drawer.Title className="mt-1 text-2xl truncate font-bold">
+                <Drawer.Title className="mt-1 truncate text-2xl font-bold">
                   {product.title}
                 </Drawer.Title>
-                <p className="mt-2 text-xl text-muted-foreground font-medium">
+                <p className="mt-2 text-xl font-medium text-muted-foreground">
                   ${product.price}
                 </p>
                 <div className="mt-3 flex items-center">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <svg
                       key={`star-${index}`}
-                      className="text-yellow-400 h-5 w-5 shrink-0"
+                      className="size-5 shrink-0 text-yellow-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -133,14 +135,14 @@ export function ProductModal({ product }: ProductModalProps) {
                       ></path>
                     </svg>
                   ))}
-                  <span className="text-[15px] leading-none text-muted-foreground/80 font-medium ml-2">
+                  <span className="ml-2 text-[15px] font-medium leading-none text-muted-foreground/80">
                     35 reviews
                   </span>
                 </div>
               </div>
 
-              <div className="mt-3 mb-16 w-full text-pretty">
-                <Drawer.Description className="mt-6 mb-4 text-[17px] text-muted-foreground font-medium">
+              <div className="mb-16 mt-3 w-full text-pretty">
+                <Drawer.Description className="mb-4 mt-6 text-[17px] font-medium text-muted-foreground">
                   {product.description}
                 </Drawer.Description>
 
@@ -157,7 +159,7 @@ export function ProductModal({ product }: ProductModalProps) {
     <Dialog defaultOpen={true} open={true} onOpenChange={handleOpenChange}>
       <DialogContent
         className={cn(
-          "overflow-hidden p-3 max-w-2xl md:rounded-2xl md:border gap-0"
+          "max-w-2xl gap-0 overflow-hidden p-3 md:rounded-2xl md:border",
         )}
       >
         <DialogHeader className="h-0">

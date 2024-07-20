@@ -1,5 +1,10 @@
 "use client";
 
+import React from "react";
+import Image from "next/image";
+import { ImageData } from "@/types";
+
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -8,12 +13,6 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-
-import React from "react";
-
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { ImageData } from "@/types";
 
 interface ProductCarouselProps {
   images: ImageData[];
@@ -54,7 +53,7 @@ export function ProductCarousel({
   }, [api]);
 
   return (
-    <div className="group relative sm:rounded-xl overflow-hidden size-full">
+    <div className="group relative size-full overflow-hidden sm:rounded-xl">
       <Carousel
         setApi={setApi}
         className="m-0 size-full"
@@ -71,7 +70,7 @@ export function ProductCarousel({
           {images.map((item, idx) => (
             <CarouselItem
               key={item.img.src}
-              className="p-0 sm:first:rounded-l-xl sm:last:rounded-r-xl overflow-hidden size-full"
+              className="size-full overflow-hidden p-0 sm:first:rounded-l-xl sm:last:rounded-r-xl"
             >
               <Image
                 {...item.img}
@@ -80,7 +79,7 @@ export function ProductCarousel({
                 placeholder="blur"
                 blurDataURL={item.base64}
                 priority={idx === 0 ? true : false}
-                className="size-full object-center object-cover sm:max-h-[500px]"
+                className="size-full object-cover object-center sm:max-h-[500px]"
                 sizes="(max-width: 640px) 500px, 350px"
               />
             </CarouselItem>
@@ -89,15 +88,15 @@ export function ProductCarousel({
         <CarouselPrevious
           variant="ghost"
           className={cn(
-            "invisible group-hover:visible ml-14 rounded-full size-8 bg-foreground text-background z-50",
-            scrollPrev ? "" : "hidden"
+            "invisible z-50 ml-14 size-8 rounded-full bg-foreground text-background group-hover:visible",
+            scrollPrev ? "" : "hidden",
           )}
         />
         <CarouselNext
           variant="ghost"
           className={cn(
-            "invisible group-hover:visible mr-14 rounded-full size-8 bg-foreground text-background z-50",
-            scrollNext ? "" : "hidden"
+            "invisible z-50 mr-14 size-8 rounded-full bg-foreground text-background group-hover:visible",
+            scrollNext ? "" : "hidden",
           )}
         />
       </Carousel>
@@ -105,8 +104,8 @@ export function ProductCarousel({
       {/* Dots */}
       <div
         className={cn(
-          "absolute z-40 left-1/2 transform -translate-x-1/2",
-          drawer ? "bottom-7" : "bottom-3"
+          "absolute left-1/2 z-40 -translate-x-1/2",
+          drawer ? "bottom-7" : "bottom-3",
         )}
       >
         <div className="flex gap-3">
@@ -118,11 +117,11 @@ export function ProductCarousel({
               // onClick={() => goToIndex(index)}
               className="relative size-1.5 overflow-hidden rounded-full"
             >
-              <div className="w-full h-full bg-muted/30 dark:bg-muted-foreground/80 absolute"></div>
+              <div className="absolute size-full bg-muted/30 dark:bg-muted-foreground/80"></div>
               <div
                 className={cn(
-                  "h-full bg-background dark:bg-foreground relative w-0 z-10",
-                  current === index + 1 ? "w-full" : ""
+                  "relative z-10 h-full w-0 bg-background dark:bg-foreground",
+                  current === index + 1 ? "w-full" : "",
                 )}
               />
             </div>

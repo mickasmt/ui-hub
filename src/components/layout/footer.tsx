@@ -1,6 +1,7 @@
-import ThemeToggle from "@/components/layout/theme-toggle";
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
+
+import { siteConfig } from "@/config/site";
+import ThemeToggle from "@/components/layout/theme-toggle";
 
 interface FooterLinkProps {
   href: string;
@@ -27,7 +28,7 @@ function FooterLink({ href, label }: FooterLinkProps) {
 
   return (
     <Link
-      className="text-muted-foreground font-medium transition-colors duration-200 hover:text-primary max-sm:last:hidden"
+      className="font-medium text-muted-foreground transition-colors duration-200 hover:text-primary max-sm:last:hidden"
       href={href}
       aria-label={label}
       target={isLocal ? undefined : "_blank"}
@@ -40,8 +41,8 @@ function FooterLink({ href, label }: FooterLinkProps) {
 
 export function Footer() {
   return (
-    <footer className="mb-6 container w-full max-w-screen-sm px-4 text-base md:px-0">
-      <div className="flex gap-2 sm:gap-4 items-center justify-between md:gap-6">
+    <footer className="container mb-6 w-full max-w-screen-sm px-4 text-base md:px-0">
+      <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6">
         <div className="flex items-center gap-5 md:py-1.5">
           {links.map((props, i) => (
             <FooterLink key={i} {...props} />

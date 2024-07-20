@@ -10,8 +10,8 @@ export function UIShell({
   return (
     <div
       className={cn(
-        "bg-second-accent border border-border rounded-xl p-4 w-full",
-        className
+        "bg-second-accent w-full rounded-xl border border-border p-4",
+        className,
       )}
     >
       {children}

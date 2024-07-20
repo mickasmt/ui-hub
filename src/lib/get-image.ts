@@ -1,5 +1,5 @@
-// "use server";
-
+import path from "path";
+import fs from "fs/promises";
 import { siteConfig } from "@/config/site";
 import { getPlaiceholder } from "plaiceholder";
 
@@ -30,3 +30,17 @@ export async function getBase64(imageUrl: string) {
     img: { src: url, height, width },
   };
 }
+
+export const getImage = async (src: string) => {
+  const buffer = await fs.readFile(path.join("./public", src));
+
+  const {
+    metadata: { height, width },
+    ...plaiceholder
+  } = await getPlaiceholder(buffer, { size: 10 });
+
+  return {
+    ...plaiceholder,
+    img: { src, height, width },
+  };
+};

@@ -1,7 +1,9 @@
+import { ProductImagesData } from "@/types";
+
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
 import { ProductCarousel } from "./product-carousel";
 import { SmoothButtonCart } from "./smooth-button-cart";
-import { ProductImagesData } from "@/types";
 
 interface ProductDisplayProps {
   product: ProductImagesData;
@@ -10,19 +12,19 @@ interface ProductDisplayProps {
 export default function ProductDisplay({ product }: ProductDisplayProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-8 sm:gap-6">
-      <div className="w-full sm:col-span-4 rounded-xl overflow-hidden">
+      <div className="w-full overflow-hidden rounded-xl sm:col-span-4">
         <ProductCarousel images={product.images} />
       </div>
 
-      <div className="flex flex-col sm:col-span-4 w-full items-start gap-4 font-medium text-pretty ">
-        <div className="flex flex-col w-full gap-1.5 text-balance">
+      <div className="flex w-full flex-col items-start gap-4 text-pretty font-medium sm:col-span-4">
+        <div className="flex w-full flex-col gap-1.5 text-balance">
           <h1 className="text-2xl">{product.title}</h1>
-          <p className=" text-xl text-muted-foreground">${product.price}</p>
-          <div className=" flex items-center">
+          <p className="text-xl text-muted-foreground">${product.price}</p>
+          <div className="flex items-center">
             {Array.from({ length: 5 }).map((_, index) => (
               <svg
                 key={`star-${index}`}
-                className="text-yellow-400 h-5 w-5 shrink-0"
+                className="size-5 shrink-0 text-yellow-400"
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
@@ -34,7 +36,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
                 ></path>
               </svg>
             ))}
-            <span className="text-[15px] leading-none text-muted-foreground font-medium ml-2">
+            <span className="ml-2 text-[15px] font-medium leading-none text-muted-foreground">
               35 reviews
             </span>
           </div>
@@ -43,7 +45,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
           {product.description}
         </p>
         <ProductInfos />
-        <div className="mt-4 sm:mt-auto w-full">
+        <div className="mt-4 w-full sm:mt-auto">
           <SmoothButtonCart />
         </div>
       </div>
@@ -60,7 +62,7 @@ export function ProductInfos() {
       <div className="mt-4 sm:mt-0">
         <h2 className="text-lg font-medium">Colors</h2>
         <ToggleGroup
-          className="mt-2 flex justify-start flex-wrap"
+          className="mt-2 flex flex-wrap justify-start"
           type="single"
           defaultValue="black"
           variant="outline"
@@ -68,7 +70,7 @@ export function ProductInfos() {
           {colors.map((color) => (
             <ToggleGroupItem
               key={color}
-              className="rounded-xl capitalize px-5"
+              className="rounded-xl px-5 capitalize"
               value={color}
             >
               {color}
@@ -80,7 +82,7 @@ export function ProductInfos() {
       <div className="mt-4 sm:mt-0">
         <h2 className="text-lg font-medium">Size</h2>
         <ToggleGroup
-          className="mt-2 flex justify-start flex-wrap"
+          className="mt-2 flex flex-wrap justify-start"
           type="single"
           defaultValue="m"
           variant="outline"
@@ -88,7 +90,7 @@ export function ProductInfos() {
           {sizes.map((size) => (
             <ToggleGroupItem
               key={size}
-              className="rounded-xl uppercase px-5"
+              className="rounded-xl px-5 uppercase"
               value={size}
             >
               {size}
