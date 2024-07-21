@@ -13,25 +13,17 @@ export type SiteConfig = {
   };
 };
 
-export type ImageData = {
-  base64: string;
-  img: {
-    src: string;
-    height: number;
-    width: number;
-  };
-};
-
 export type Product = {
   id: string;
   title: string;
   price: number;
   description: string;
   category: string;
+  thumbnail: string;
+  images: string[];
+  imagesBase64?: string[];
   rating: {
     rate: number;
     count: number;
   };
 };
-
-export type ProductImagesData = Product & { images: ImageData[] };

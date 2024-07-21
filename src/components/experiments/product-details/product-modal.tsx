@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ProductImagesData } from "@/types";
+import { Product } from "@/types";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Drawer } from "vaul";
 
@@ -14,11 +14,7 @@ import { ProductCarousel } from "./product-carousel";
 import ProductDisplay, { ProductInfos } from "./product-display";
 import { SmoothButtonCart } from "./smooth-button-cart";
 
-interface ProductModalProps {
-  product: ProductImagesData;
-}
-
-export function ProductModal({ product }: ProductModalProps) {
+export function ProductModal({ product }: { product: Product }) {
   const router = useRouter();
   const { isMobile, height } = useMediaQuery();
   const [snap, setSnap] = useState<number | string | null>(0.3);
@@ -73,7 +69,7 @@ export function ProductModal({ product }: ProductModalProps) {
                 height: drawerHeightStart,
               }}
             >
-              <ProductCarousel images={product.images} drawer />
+              <ProductCarousel images={product.images} imagesBase64={product.imagesBase64} drawer />
             </div>
           </div>
 

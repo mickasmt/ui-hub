@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { ImageData } from "@/types";
 
-import { cn } from "@/lib/utils";
+import { cn, placeholderBlurhash } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -13,14 +11,17 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import BlurImage from "@/components/blur-image";
 
 interface ProductCarouselProps {
-  images: ImageData[];
+  images: string[];
+  imagesBase64?: string[];
   drawer?: boolean;
 }
 
 export function ProductCarousel({
   images,
+  imagesBase64,
   drawer = false,
 }: ProductCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -28,12 +29,12 @@ export function ProductCarousel({
   const [scrollPrev, setScrollPrev] = React.useState<boolean>(false);
   const [scrollNext, setScrollNext] = React.useState<boolean>(true);
 
-  const goToIndex = (index: number) => {
-    if (!api) return;
+  // const goToIndex = (index: number) => {
+  //   if (!api) return;
 
-    setCurrent(index);
-    api?.scrollTo(index, true);
-  };
+  //   setCurrent(index);
+  //   api?.scrollTo(index, true);
+  // };
 
   React.useEffect(() => {
     if (!api) {
@@ -67,19 +68,20 @@ export function ProductCarousel({
             "max-h-[600px]": !drawer,
           })}
         >
-          {images.map((item, idx) => (
+          {images.map((image, idx) => (
             <CarouselItem
-              key={item.img.src}
+              key={image}
               className="size-full overflow-hidden p-0 sm:first:rounded-l-xl sm:last:rounded-r-xl"
             >
-              <Image
-                {...item.img}
-                alt={item.img.src}
-                key={item.img.src}
-                placeholder="blur"
-                blurDataURL={item.base64}
-                priority={idx === 0 ? true : false}
+              <BlurImage
+                alt={`img-carousel-${idx}`}
+                blurDataURL={imagesBase64?.[idx] ?? placeholderBlurhash}
                 className="size-full object-cover object-center sm:max-h-[500px]"
+                width={500}
+                height={500}
+                placeholder="blur"
+                priority={idx === 0 ? true : false}
+                src={image}
                 sizes="(max-width: 640px) 500px, 350px"
               />
             </CarouselItem>

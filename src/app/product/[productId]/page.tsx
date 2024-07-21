@@ -1,8 +1,9 @@
+import { PRODUCTS } from "@/lib/constants";
+import { getProduct } from "@/lib/data";
 import ProductDisplay from "@/components/experiments/product-details/product-display";
-import { getProduct, products } from "@/lib/data";
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
+  return PRODUCTS.map((product) => ({
     productId: product.id,
   }));
 }
@@ -17,6 +18,7 @@ export default async function ProductDetailsPage({
   params: { productId },
 }: Props) {
   const product = await getProduct(productId);
+  // console.log(product)
 
   if (!product) {
     return <div>Product not found</div>;

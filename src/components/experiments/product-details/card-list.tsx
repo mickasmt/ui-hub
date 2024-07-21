@@ -1,22 +1,20 @@
 import Link from "next/link";
 
-import { products } from "@/lib/data";
+import { PRODUCTS } from "@/lib/constants";
 import { getBlurDataURL, placeholderBlurhash } from "@/lib/utils";
 import BlurImage from "@/components/blur-image";
 
 export async function CardList() {
   const thumbnailsBlurhash = await Promise.all(
-    products.map(async (product) => {
-      const imgUrl = `https://ui-hub-nine.vercel.app${product.thumbnail}`;
-      const blurDataURL = await getBlurDataURL(imgUrl);
-      return `data:image/png;base64,${blurDataURL}`;
+    PRODUCTS.map(async (product) => {
+      const blurDataURL = await getBlurDataURL(product.thumbnail);
+      return blurDataURL;
     }),
   );
-  // console.log(thumbnailsBlurhash);
 
   return (
     <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-5">
-      {products.map((product, idx) => (
+      {PRODUCTS.map((product, idx) => (
         <Link
           href={`/product/${product.id}`}
           key={product.id}

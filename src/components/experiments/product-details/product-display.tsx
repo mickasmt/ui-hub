@@ -1,19 +1,18 @@
-import { ProductImagesData } from "@/types";
+import { Product } from "@/types";
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 import { ProductCarousel } from "./product-carousel";
 import { SmoothButtonCart } from "./smooth-button-cart";
 
-interface ProductDisplayProps {
-  product: ProductImagesData;
-}
-
-export default function ProductDisplay({ product }: ProductDisplayProps) {
+export default function ProductDisplay({ product }: { product: Product }) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-8 sm:gap-6">
       <div className="w-full overflow-hidden rounded-xl sm:col-span-4">
-        <ProductCarousel images={product.images} />
+        <ProductCarousel
+          images={product.images}
+          imagesBase64={product.imagesBase64}
+        />
       </div>
 
       <div className="flex w-full flex-col items-start gap-4 text-pretty font-medium sm:col-span-4">
