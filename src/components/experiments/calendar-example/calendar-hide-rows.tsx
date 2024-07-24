@@ -12,7 +12,7 @@ export const CalendarHideRows = () => {
 
   return (
     <>
-      <div className="absolute right-4 top-4 flex items-center space-x-2">
+      <div className="absolute bottom-6 flex items-center space-x-2">
         <Switch onCheckedChange={setHideRows} id="switch-cal-hr" />
         <label
           htmlFor="switch-cal-hr"
@@ -22,6 +22,7 @@ export const CalendarHideRows = () => {
         </label>
       </div>
 
+      {/* Check app/globals.css for the CSS animation  */}
       <Calendar
         mode="single"
         selected={date}
