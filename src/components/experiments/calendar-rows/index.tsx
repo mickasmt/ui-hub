@@ -3,7 +3,7 @@ import { UIShell } from "@/components/shared/ui-shell";
 
 import { CalendarHideRows } from "./calendar-hide-rows";
 
-export function CalendarExample() {
+export function CalendarRowsExample() {
   return (
     <div className="flex flex-col gap-y-6">
       <HeaderSection
@@ -11,8 +11,8 @@ export function CalendarExample() {
         text="Hide rows inside shadcn's calendar component."
       />
       <UIShell
-        className="flex h-[400px] items-start justify-center pt-4"
-        githubUrl="https://github.com/mickasmt/ui-hub/tree/main/src/components/experiments/calendar-example"
+        className="flex h-[420px] items-start justify-center pt-4"
+        // githubUrl="https://github.com/mickasmt/ui-hub/tree/main/src/components/experiments/calendar-example"
       >
         <CalendarHideRows />
       </UIShell>

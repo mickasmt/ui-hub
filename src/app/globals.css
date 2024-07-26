@@ -73,6 +73,10 @@
   transition: transform .2s cubic-bezier(.32, .72, 0, 1) !important;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* calendar */
 .cal-hr .rdp-tbody>tr {
   opacity: 1;

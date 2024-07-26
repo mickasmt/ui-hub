@@ -16,7 +16,7 @@ export const CalendarHideRows = () => {
         <Switch onCheckedChange={setHideRows} id="switch-cal-hr" />
         <label
           htmlFor="switch-cal-hr"
-          className="select-none text-sm font-medium text-muted-foreground"
+          className="select-none text-[15px] font-medium text-muted-foreground"
         >
           Hide Rows
         </label>
@@ -27,7 +27,7 @@ export const CalendarHideRows = () => {
         mode="single"
         selected={date}
         onSelect={setDate}
-        disableNavigation
+        // disableNavigation
         className={cn("cal-hr", {
           "hide-rows": hideRows,
         })}

@@ -27,3 +27,13 @@ export type Product = {
     count: number;
   };
 };
+
+export type Event = {
+  id: string;
+  title: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  location?: string;
+  bgColor: string;
+};
