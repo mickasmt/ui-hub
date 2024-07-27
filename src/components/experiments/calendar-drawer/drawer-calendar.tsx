@@ -142,7 +142,7 @@ export function DrawerCalendar() {
   }
 
   return (
-    <Dialog defaultOpen={true} open={open}>
+    <Dialog  open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
